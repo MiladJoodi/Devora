@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 
-import { loginSchema } from "@/server/validations/auth";
+import { loginSchema } from "@/validations/auth";
 import { loginUser } from "@/server/services/auth/login";
 import { cookies } from "next/headers";
 import { createAuthToken } from "@/server/lib/auth";

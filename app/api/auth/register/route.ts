@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 
-import { registerSchema } from "@/server/validations/auth";
+import { registerSchema } from "@/validations/auth";
 import { registerUser } from "@/server/services/auth/register";
 
 export async function POST(request: Request) {
