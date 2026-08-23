@@ -10,7 +10,7 @@ const poppins = Poppins({
 });
 
 export const metadata: Metadata = {
-  title: "Devora",
+  title: "Devora | Share ideas",
   description: "Share ideas, discover knowledge, and connect with developers.",
 };
 
