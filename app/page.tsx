@@ -1,5 +1,6 @@
 import PostList from "@/components/posts/post-list";
 import Link from "next/link";
+import { getPosts } from "@/server/services/posts/get-posts";
 
 const features = [
   {
@@ -19,7 +20,9 @@ const features = [
   },
 ];
 
-export default function HomePage() {
+export default async function HomePage() {
+  const { data: posts } = await getPosts(1, 10);
+
   return (
     <main className="flex-1">
 
@@ -120,7 +123,7 @@ export default function HomePage() {
             </Link>
           </div>
 
-          <PostList />
+          <PostList posts={posts} />
         </div>
       </section>
 

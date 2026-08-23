@@ -1,4 +1,6 @@
 import PostList from "@/components/posts/post-list";
+import Pagination from "@/components/posts/pagination";
+import { getPosts } from "@/server/services/posts/get-posts";
 
 type PostsPageProps = {
   searchParams: Promise<{
@@ -12,6 +14,11 @@ export default async function PostsPage({
   const { page } = await searchParams;
 
   const currentPage = Math.max(Number(page) || 1, 1);
+
+  const { data: posts, total } = await getPosts(
+    currentPage,
+    10,
+  );
 
   return (
     <main className="mx-auto w-full max-w-6xl px-6 py-12">
@@ -31,7 +38,13 @@ export default async function PostsPage({
       </div>
 
       <div className="mt-10">
-        <PostList page={currentPage} />
+        <PostList posts={posts} />
+
+        <Pagination
+          currentPage={currentPage}
+          total={total}
+          limit={10}
+        />
       </div>
     </main>
   );

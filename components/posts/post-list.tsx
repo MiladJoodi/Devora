@@ -1,16 +1,15 @@
 import Link from "next/link";
 
-import { getPosts } from "@/server/services/posts/get-posts";
+import type { InferSelectModel } from "drizzle-orm";
+import { posts } from "@/server/db/schema";
+
+type Post = InferSelectModel<typeof posts>;
 
 type PostListProps = {
-  page?: number;
+  posts: Post[];
 };
 
-export default async function PostList({
-  page = 1,
-}: PostListProps) {
-  const { data: posts } = await getPosts(page, 10);
-
+export default function PostList({ posts }: PostListProps) {
   if (posts.length === 0) {
     return (
       <p className="text-sm text-muted-foreground">
@@ -22,10 +21,7 @@ export default async function PostList({
   return (
     <div className="grid gap-6 md:grid-cols-2">
       {posts.map((post) => (
-        <article
-          key={post.id}
-          className="rounded-xl border p-6"
-        >
+        <article key={post.id} className="rounded-xl border p-6">
           <Link href={`/posts/${post.slug}`}>
             <h2 className="text-xl font-semibold">
               {post.title}
