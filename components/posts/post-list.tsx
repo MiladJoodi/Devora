@@ -2,8 +2,14 @@ import Link from "next/link";
 
 import { getPosts } from "@/server/services/posts/get-posts";
 
-export default async function PostList() {
-  const posts = await getPosts(1, 10);
+type PostListProps = {
+  page?: number;
+};
+
+export default async function PostList({
+  page = 1,
+}: PostListProps) {
+  const { data: posts } = await getPosts(page, 10);
 
   if (posts.length === 0) {
     return (
