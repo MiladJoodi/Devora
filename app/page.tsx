@@ -1,3 +1,4 @@
+import PostList from "@/components/posts/post-list";
 import Link from "next/link";
 
 const features = [
@@ -21,9 +22,10 @@ const features = [
 export default function HomePage() {
   return (
     <main className="flex-1">
+
       {/* Hero */}
       <section className="relative overflow-hidden border-b">
-      <div className="mx-auto flex min-h-130 max-w-6xl items-center px-6 py-20">
+        <div className="mx-auto flex min-h-130 max-w-6xl items-center px-6 py-20">
           <div className="max-w-4xl">
             <div className="mb-8 inline-flex items-center gap-2 rounded-full border bg-muted/40 px-4 py-2 text-sm text-muted-foreground">
               <span className="size-2 rounded-full bg-foreground" />
@@ -91,6 +93,38 @@ export default function HomePage() {
           </div>
         </div>
       </section>
+
+      {/* Latest Posts */}
+      <section className="border-b">
+        <div className="mx-auto max-w-6xl px-6 py-20">
+          <div className="mb-10 flex items-end justify-between gap-6">
+            <div>
+              <p className="text-sm font-medium text-muted-foreground">
+                LATEST POSTS
+              </p>
+
+              <h2 className="mt-3 text-3xl font-semibold tracking-tight">
+                From the community
+              </h2>
+
+              <p className="mt-3 text-muted-foreground">
+                Fresh ideas, experiences, and knowledge from developers.
+              </p>
+            </div>
+
+            <Link
+              href="/posts"
+              className="hidden text-sm font-medium underline-offset-4 hover:underline sm:block"
+            >
+              View all
+            </Link>
+          </div>
+
+          <PostList />
+        </div>
+      </section>
+
+
 
       {/* CTA */}
       <section className="border-t">
