@@ -1,6 +1,6 @@
 "use client";
 
-import { api } from "@/server/lib/axios";
+import { api } from "@/lib/axios";
 import { useRouter } from "next/navigation";
 
 export function LogoutButton() {

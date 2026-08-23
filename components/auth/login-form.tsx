@@ -6,7 +6,7 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import axios from "axios";
 
-import { api } from "@/server/lib/axios";
+import { api } from "@/lib/axios";
 import {
   loginSchema,
   type LoginInput,

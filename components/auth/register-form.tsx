@@ -9,7 +9,7 @@ import {
   registerSchema,
   type RegisterInput,
 } from "@/validations/auth";
-import { api } from "@/server/lib/axios";
+import { api } from "@/lib/axios";
 import { useRouter } from "next/navigation";
 
 export function RegisterForm() {
