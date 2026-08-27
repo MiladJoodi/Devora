@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 import { requireUser } from "@/server/services/auth/require-user";
 
 export default async function DashboardPage() {
@@ -18,6 +20,34 @@ export default async function DashboardPage() {
           <p className="mt-2 text-muted-foreground">
             This is your dashboard.
           </p>
+
+          <div className="mt-8 grid gap-4 sm:grid-cols-2">
+            <Link
+              href="/dashboard/posts/new"
+              className="rounded-xl border p-5 transition hover:bg-muted"
+            >
+              <h2 className="font-semibold">
+                Create Post
+              </h2>
+
+              <p className="mt-2 text-sm text-muted-foreground">
+                Write and publish a new post.
+              </p>
+            </Link>
+
+            <Link
+              href="/dashboard/categories"
+              className="rounded-xl border p-5 transition hover:bg-muted"
+            >
+              <h2 className="font-semibold">
+                Categories
+              </h2>
+
+              <p className="mt-2 text-sm text-muted-foreground">
+                Manage your post categories.
+              </p>
+            </Link>
+          </div>
         </div>
       </div>
     </main>

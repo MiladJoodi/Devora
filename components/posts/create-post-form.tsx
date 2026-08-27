@@ -11,6 +11,7 @@ import { useRouter } from "next/navigation";
 import { api } from "@/lib/axios";
 import axios from "axios";
 import { useState } from "react";
+import CategorySelect from "../categories/category-select";
 
 export default function CreatePostForm() {
 
@@ -79,23 +80,10 @@ export default function CreatePostForm() {
                 )}
             </div>
 
-            <div>
-                <label className="text-sm font-medium">
-                    Category ID
-                </label>
-
-                <input
-                    {...register("categoryId")}
-                    className="mt-2 w-full rounded-md border px-3 py-2"
-                    placeholder="Category ID"
-                />
-
-                {errors.categoryId && (
-                    <p className="mt-1 text-sm text-red-500">
-                        {errors.categoryId.message}
-                    </p>
-                )}
-            </div>
+            <CategorySelect
+                register={register}
+                error={errors.categoryId?.message}
+            />
 
             {error && (
                 <p className="text-sm text-red-500">
