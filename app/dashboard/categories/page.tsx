@@ -1,5 +1,7 @@
 import { getCategories } from "@/server/services/categories/get-categories";
 import CreateCategoryForm from "@/components/categories/create-category-form";
+import EditCategoryForm from "@/components/categories/edit-category-form";
+import CategoryItem from "@/components/categories/category-item";
 
 export default async function CategoriesPage() {
     const categories = await getCategories();
@@ -42,17 +44,12 @@ export default async function CategoriesPage() {
                 ) : (
                     <div className="space-y-3">
                         {categories.map((category) => (
-                            <div
+                            <CategoryItem
                                 key={category.id}
-                                className="flex items-center justify-between rounded-lg border p-4"
-                            >
-                                <div>
-                                    <p className="font-medium">{category.name}</p>
-                                    <p className="text-sm text-muted-foreground">
-                                        {category.slug}
-                                    </p>
-                                </div>
-                            </div>
+                                id={category.id}
+                                name={category.name}
+                                slug={category.slug}
+                            />
                         ))}
                     </div>
                 )}
