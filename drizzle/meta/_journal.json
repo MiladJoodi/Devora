@@ -15,6 +15,13 @@
       "when": 1787170258588,
       "tag": "0001_perfect_wraith",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1787856008342,
+      "tag": "0002_big_blink",
+      "breakpoints": true
     }
   ]
 }

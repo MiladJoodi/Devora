@@ -73,31 +73,55 @@ export async function PATCH(
 export async function DELETE(
     request: Request,
     { params }: { params: Promise<{ id: string }> },
-) {
+  ) {
     try {
-        const { id } = await params;
-
-        const category = await deleteCategory(id);
-
-        if (!category) {
-            return NextResponse.json(
-                { message: "Category not found." },
-                { status: 404 },
-            );
-        }
-
+      const { id } = await params;
+  
+      const category = await deleteCategory(id);
+  
+      if (!category) {
         return NextResponse.json(
-            {
-                message: "Category deleted successfully",
-            },
-            { status: 200 },
+          { message: "Category not found." },
+          { status: 404 },
         );
+      }
+  
+      return NextResponse.json(
+        {
+          message: "Category deleted successfully",
+        },
+        { status: 200 },
+      );
     } catch (error) {
-        console.error(error);
-
+      if (
+        error instanceof Error &&
+        error.message === "DEFAULT_CATEGORY_CANNOT_BE_DELETED"
+      ) {
         return NextResponse.json(
-            { message: "Internal server error" },
-            { status: 500 },
+          {
+            message: "The default category cannot be deleted.",
+          },
+          { status: 400 },
         );
+      }
+  
+      if (
+        error instanceof Error &&
+        error.message === "DEFAULT_CATEGORY_NOT_FOUND"
+      ) {
+        return NextResponse.json(
+          {
+            message: "Default category not found.",
+          },
+          { status: 500 },
+        );
+      }
+  
+      console.error(error);
+  
+      return NextResponse.json(
+        { message: "Internal server error" },
+        { status: 500 },
+      );
     }
-}
+  }
