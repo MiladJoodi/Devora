@@ -1,5 +1,7 @@
+import { eq } from "drizzle-orm";
+
 import { db } from "@/server/db";
-import { posts } from "@/server/db/schema";
+import { categories, posts } from "@/server/db/schema";
 
 type CreatePostInput = {
   title: string;
@@ -10,6 +12,14 @@ type CreatePostInput = {
 };
 
 export async function createPost(data: CreatePostInput) {
+  const category = await db.query.categories.findFirst({
+    where: eq(categories.id, data.categoryId),
+  });
+
+  if (!category) {
+    throw new Error("CATEGORY_NOT_FOUND");
+  }
+
   const [post] = await db
     .insert(posts)
     .values({

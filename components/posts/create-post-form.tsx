@@ -9,7 +9,6 @@ import {
 } from "@/validations/post";
 import { useRouter } from "next/navigation";
 import { api } from "@/lib/axios";
-import axios from "axios";
 import { useState } from "react";
 import CategorySelect from "../categories/category-select";
 import { getApiErrorMessage } from "@/lib/api-error";

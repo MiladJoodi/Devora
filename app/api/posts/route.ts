@@ -42,6 +42,16 @@ export async function POST(request: Request) {
       { status: 201 },
     );
   } catch (error) {
+    if (
+      error instanceof Error &&
+      error.message === "CATEGORY_NOT_FOUND"
+    ) {
+      return NextResponse.json(
+        { message: "Category not found." },
+        { status: 404 },
+      );
+    }
+
     console.error(error);
 
     return NextResponse.json(
