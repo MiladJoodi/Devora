@@ -51,6 +51,16 @@ export async function POST(request: Request) {
       { status: 201 },
     );
   } catch (error) {
+    if (
+      error instanceof Error &&
+      error.message === "CATEGORY_ALREADY_EXISTS"
+    ) {
+      return NextResponse.json(
+        { message: "Category already exists." },
+        { status: 409 },
+      );
+    }
+
     console.error(error);
 
     return NextResponse.json(

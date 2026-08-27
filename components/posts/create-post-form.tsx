@@ -12,6 +12,7 @@ import { api } from "@/lib/axios";
 import axios from "axios";
 import { useState } from "react";
 import CategorySelect from "../categories/category-select";
+import { getApiErrorMessage } from "@/lib/api-error";
 
 export default function CreatePostForm() {
 
@@ -35,15 +36,8 @@ export default function CreatePostForm() {
 
             router.push(`/posts/${response.data.post.slug}`);
         } catch (error) {
-            if (axios.isAxiosError(error)) {
-                setError(
-                    error.response?.data?.message ||
-                    "Something went wrong.",
-                );
-            } else {
-                setError("Something went wrong.");
-            }
-        }
+            setError(getApiErrorMessage(error));
+          }
     }
 
     return (

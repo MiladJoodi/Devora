@@ -11,6 +11,7 @@ import {
     createCategorySchema,
     type CreateCategoryInput,
 } from "@/validations/category";
+import { getApiErrorMessage } from "@/lib/api-error";
 
 export default function CreateCategoryForm() {
     const router = useRouter();
@@ -32,15 +33,8 @@ export default function CreateCategoryForm() {
 
             router.refresh();
         } catch (error) {
-            if (axios.isAxiosError(error)) {
-                setError(
-                    error.response?.data?.message ||
-                    "Something went wrong.",
-                );
-            } else {
-                setError("Something went wrong.");
-            }
-        }
+            setError(getApiErrorMessage(error));
+          }
     }
 
     return (
