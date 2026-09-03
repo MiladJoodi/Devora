@@ -36,7 +36,7 @@ export default function DeleteButton({
       type="button"
       onClick={handleDelete}
       disabled={disabled || isDeleting}
-      className={`cursor-pointer rounded-md border px-4 py-2 text-sm font-medium text-red-500 transition hover:bg-red-50 disabled:opacity-50 ${className}`}
+      className={`px-4 py-2 text-sm font-medium text-red-500 rounded-md border transition cursor-pointer hover:bg-red-50 disabled:opacity-50 ${className}`}
     >
       {isDeleting ? "Deleting..." : "Delete"}
     </button>
