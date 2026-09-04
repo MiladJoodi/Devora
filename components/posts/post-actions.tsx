@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useRouter } from "next/navigation";
 
 import DeleteButton from "@/components/ui/delete-button";
@@ -28,9 +29,18 @@ export default function PostActions({
   }
 
   return (
-    <DeleteButton
-      onDelete={handleDelete}
-      confirmationMessage={`Are you sure you want to delete "${title}"?`}
-    />
+    <div className="flex justify-end gap-2">
+      <Link
+        href={`/dashboard/posts/${slug}/edit`}
+        className="rounded-md border px-3 py-1.5 hover:bg-muted"
+      >
+        Edit
+      </Link>
+
+      <DeleteButton
+        onDelete={handleDelete}
+        confirmationMessage={`Are you sure you want to delete "${title}"?`}
+      />
+    </div>
   );
 }

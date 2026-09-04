@@ -3,6 +3,7 @@ import { NextResponse } from "next/server";
 import { getPostBySlug } from "@/server/services/posts/get-post-by-slug";
 import { deletePost } from "@/server/services/posts/delete-post";
 import { updatePost } from "@/server/services/posts/update-post";
+import { updatePostSchema } from "@/validations/post";
 
 // GET /api/posts/[slug]
 export async function GET(
@@ -72,11 +73,21 @@ export async function PATCH(
     const { slug } = await params;
     const body = await request.json();
 
+    const result = updatePostSchema.safeParse(body);
+
+    if (!result.success) {
+      return NextResponse.json(
+        {
+          message: "Invalid input",
+          errors: result.error.flatten().fieldErrors,
+        },
+        { status: 400 },
+      );
+    }
+
     const post = await updatePost({
       slug,
-      title: body.title,
-      content: body.content,
-      categoryId: body.categoryId,
+      ...result.data,
     });
 
     if (!post) {

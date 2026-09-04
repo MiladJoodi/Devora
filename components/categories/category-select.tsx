@@ -14,11 +14,13 @@ type Category = {
 type CategorySelectProps = {
     register: UseFormRegister<CreatePostInput>;
     error?: string;
+    defaultValue?: string;
 };
 
 export default function CategorySelect({
     register,
     error,
+    defaultValue = "",
 }: CategorySelectProps) {
     const [categories, setCategories] = useState<Category[]>([]);
     const [isLoading, setIsLoading] = useState(true);
@@ -59,7 +61,7 @@ export default function CategorySelect({
             ) : (
                 <select
                     {...register("categoryId")}
-                    defaultValue=""
+                    defaultValue={defaultValue}
                     className="mt-2 w-full rounded-md border px-3 py-2"
                 >
                     <option value="" disabled>
