@@ -54,6 +54,9 @@ export default async function PostsPage({
                                     Status
                                 </th>
                                 <th className="px-5 py-4 text-left font-medium">
+                                    Category
+                                </th>
+                                <th className="px-5 py-4 text-left font-medium">
                                     Created
                                 </th>
                                 <th className="px-5 py-4 text-right font-medium">
@@ -66,7 +69,7 @@ export default async function PostsPage({
                             {posts.length === 0 ? (
                                 <tr>
                                     <td
-                                        colSpan={4}
+                                        colSpan={5}
                                         className="px-5 py-8 text-center text-muted-foreground"
                                     >
                                         No posts found.
@@ -84,6 +87,10 @@ export default async function PostsPage({
 
                                         <td className="px-5 py-4">
                                             {post.status}
+                                        </td>
+
+                                        <td className="px-5 py-4">
+                                            {post.categoryName}
                                         </td>
 
                                         <td className="px-5 py-4 text-muted-foreground">
