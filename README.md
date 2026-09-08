@@ -26,12 +26,28 @@ A full-stack developer publishing platform built with **Next.js, TypeScript, Pos
 
 ## Features
 
+### Currently Implemented
+
 * Authentication & authorization
-* Create, edit, and publish articles
-* Categories and tags
+* Create posts
+* Edit posts
+* Delete posts
+* Draft and published post status
+* Categories
+* Post-category relationships
+* Post listing
+* Pagination
+* Public post pages
+* Persian and Unicode-friendly post slugs
+* Form validation with Zod
+* API error handling
+
+### Planned
+
+* Tags
 * Comments and replies
 * Likes and bookmarks
-* Search, filtering, and pagination
+* Search and filtering
 * Image uploads
 * Notifications
 * Redis caching and rate limiting
@@ -44,7 +60,9 @@ A full-stack developer publishing platform built with **Next.js, TypeScript, Pos
 
 Devora is an **actively developed project** focused on building a production-oriented full-stack application.
 
-The feature set and architecture are still evolving, and some features may be incomplete or subject to change.
+The core content management flow is currently being developed, including authentication, posts, categories, publishing, and post management.
+
+The feature set and architecture are still evolving, and some planned features are not implemented yet.
 
 ## Goal
 
