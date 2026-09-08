@@ -1,27 +1,32 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import type { UseFormRegister } from "react-hook-form";
+import type {
+    FieldValues,
+    Path,
+    UseFormRegister,
+} from "react-hook-form";
 
 import { api } from "@/lib/axios";
-import { CreatePostInput } from "@/validations/post";
 
 type Category = {
     id: string;
     name: string;
 };
 
-type CategorySelectProps = {
-    register: UseFormRegister<CreatePostInput>;
+type CategorySelectProps<T extends FieldValues> = {
+    register: UseFormRegister<T>;
     error?: string;
     defaultValue?: string;
 };
 
-export default function CategorySelect({
+export default function CategorySelect<
+    T extends FieldValues
+>({
     register,
     error,
     defaultValue = "",
-}: CategorySelectProps) {
+}: CategorySelectProps<T>) {
     const [categories, setCategories] = useState<Category[]>([]);
     const [isLoading, setIsLoading] = useState(true);
     const [fetchError, setFetchError] = useState("");
@@ -31,7 +36,9 @@ export default function CategorySelect({
             try {
                 setFetchError("");
 
-                const response = await api.get<Category[]>("/categories");
+                const response = await api.get<Category[]>(
+                    "/categories"
+                );
 
                 setCategories(response.data);
             } catch {
@@ -60,7 +67,7 @@ export default function CategorySelect({
                 </p>
             ) : (
                 <select
-                    {...register("categoryId")}
+                    {...register("categoryId" as Path<T>)}
                     defaultValue={defaultValue}
                     className="mt-2 w-full rounded-md border px-3 py-2"
                 >
@@ -69,7 +76,10 @@ export default function CategorySelect({
                     </option>
 
                     {categories.map((category) => (
-                        <option key={category.id} value={category.id}>
+                        <option
+                            key={category.id}
+                            value={category.id}
+                        >
                             {category.name}
                         </option>
                     ))}

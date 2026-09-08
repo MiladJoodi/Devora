@@ -19,6 +19,7 @@ export async function updatePost(data: UpdatePostInput) {
       content: data.content,
       categoryId: data.categoryId,
       status: data.status,
+      publishedAt: data.status === "published" ? new Date() : null,
       updatedAt: new Date(),
     })
     .where(eq(posts.slug, data.slug))

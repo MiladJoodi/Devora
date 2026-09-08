@@ -40,6 +40,7 @@ export default async function EditPostPage({
             title={post.title}
             content={post.content}
             categoryId={post.categoryId}
+            status={post.status as "draft" | "published"}
           />
         </div>
       </div>
