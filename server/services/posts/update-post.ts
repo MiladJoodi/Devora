@@ -8,6 +8,7 @@ type UpdatePostInput = {
   title: string;
   content: string;
   categoryId: string;
+  status: "draft" | "published";
 };
 
 export async function updatePost(data: UpdatePostInput) {
@@ -17,6 +18,7 @@ export async function updatePost(data: UpdatePostInput) {
       title: data.title,
       content: data.content,
       categoryId: data.categoryId,
+      status: data.status,
       updatedAt: new Date(),
     })
     .where(eq(posts.slug, data.slug))
