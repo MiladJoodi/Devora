@@ -9,6 +9,7 @@ type CreatePostInput = {
   content: string;
   authorId: string;
   categoryId: string;
+  status: "draft" | "published";
 };
 
 export async function createPost(data: CreatePostInput) {
@@ -28,6 +29,8 @@ export async function createPost(data: CreatePostInput) {
       content: data.content,
       authorId: data.authorId,
       categoryId: data.categoryId,
+      status: data.status,
+      publishedAt: data.status === "published" ? new Date() : null,
     })
     .returning();
 

@@ -21,7 +21,7 @@ export default async function DashboardPage() {
             This is your dashboard.
           </p>
 
-          <div className="mt-8 grid gap-4 sm:grid-cols-2">
+          <div className="mt-8 grid gap-4 sm:grid-cols-3">
             <Link
               href="/dashboard/posts/new"
               className="rounded-xl border p-5 transition hover:bg-muted"
@@ -32,6 +32,19 @@ export default async function DashboardPage() {
 
               <p className="mt-2 text-sm text-muted-foreground">
                 Write and publish a new post.
+              </p>
+            </Link>
+
+            <Link
+              href="/dashboard/posts"
+              className="rounded-xl border p-5 transition hover:bg-muted"
+            >
+              <h2 className="font-semibold">
+                Posts
+              </h2>
+
+              <p className="mt-2 text-sm text-muted-foreground">
+                Manage your posts.
               </p>
             </Link>
 

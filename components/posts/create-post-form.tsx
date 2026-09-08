@@ -25,6 +25,9 @@ export default function CreatePostForm() {
         formState: { errors, isSubmitting },
     } = useForm<CreatePostInput>({
         resolver: zodResolver(createPostSchema),
+        defaultValues: {
+            status: "draft",
+        },
     });
 
     async function onSubmit(data: CreatePostInput) {
@@ -36,7 +39,7 @@ export default function CreatePostForm() {
             router.push(`/posts/${response.data.post.slug}`);
         } catch (error) {
             setError(getApiErrorMessage(error));
-          }
+        }
     }
 
     return (
@@ -77,6 +80,26 @@ export default function CreatePostForm() {
                 register={register}
                 error={errors.categoryId?.message}
             />
+
+            <div>
+                <label className="text-sm font-medium">
+                    Status
+                </label>
+
+                <select
+                    {...register("status")}
+                    className="mt-2 w-full rounded-md border px-3 py-2"
+                >
+                    <option value="draft">Draft</option>
+                    <option value="published">Published</option>
+                </select>
+
+                {errors.status && (
+                    <p className="mt-1 text-sm text-red-500">
+                        {errors.status.message}
+                    </p>
+                )}
+            </div>
 
             {error && (
                 <p className="text-sm text-red-500">
