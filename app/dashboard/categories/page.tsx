@@ -1,7 +1,7 @@
 import { getCategories } from "@/server/services/categories/get-categories";
 import CreateCategoryForm from "@/components/categories/create-category-form";
-import EditCategoryForm from "@/components/categories/edit-category-form";
 import CategoryItem from "@/components/categories/category-item";
+import Link from "next/link";
 
 export default async function CategoriesPage() {
     const categories = await getCategories();
@@ -9,9 +9,12 @@ export default async function CategoriesPage() {
     return (
         <main className="mx-auto w-full max-w-5xl px-6 py-12">
             <div>
-                <p className="text-sm font-medium text-muted-foreground">
-                    DASHBOARD
-                </p>
+                <Link
+                    href="/dashboard"
+                    className="text-sm text-muted-foreground hover:text-foreground"
+                >
+                    ← Dashboard
+                </Link>
 
                 <h1 className="mt-3 text-4xl font-semibold tracking-tight">
                     Categories

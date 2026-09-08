@@ -29,6 +29,12 @@ export default async function PostsPage({
             <div className="mx-auto max-w-6xl px-6 py-12">
                 <div className="flex items-center justify-between">
                     <div>
+                        <Link
+                            href="/dashboard"
+                            className="text-sm text-muted-foreground hover:text-foreground"
+                        >
+                            ← Dashboard
+                        </Link>
                         <h1 className="text-3xl font-semibold">Posts</h1>
                         <p className="mt-2 text-muted-foreground">
                             Manage your posts.
