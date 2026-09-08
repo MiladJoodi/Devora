@@ -22,6 +22,10 @@ export default async function PostPage({
   return (
     <main className="mx-auto w-full max-w-3xl px-6 py-12">
       <article>
+        <p className="text-sm font-medium text-muted-foreground">
+          {post.categoryName}
+        </p>
+
         <h1 className="text-4xl font-semibold tracking-tight">
           {post.title}
         </h1>
