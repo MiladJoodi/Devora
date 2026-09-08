@@ -11,6 +11,10 @@ import {
     createCategorySchema,
     type CreateCategoryInput,
 } from "@/validations/category";
+import {
+    updateCategorySchema,
+    type UpdateCategoryInput,
+} from "@/validations/category";
 
 type EditCategoryFormProps = {
     id: string;
@@ -31,14 +35,14 @@ export default function EditCategoryForm({
         register,
         handleSubmit,
         formState: { errors, isSubmitting },
-    } = useForm<CreateCategoryInput>({
-        resolver: zodResolver(createCategorySchema),
+    } = useForm<UpdateCategoryInput>({
+        resolver: zodResolver(updateCategorySchema),
         defaultValues: {
             name,
         },
     });
 
-    async function onSubmit(data: CreateCategoryInput) {
+    async function onSubmit(data: UpdateCategoryInput) {
         setError("");
 
         try {

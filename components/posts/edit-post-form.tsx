@@ -52,7 +52,7 @@ export default function EditPostForm({
         try {
             await api.patch(`/posts/${slug}`, data);
 
-            router.refresh();
+            router.push("/dashboard/posts");
         } catch (error) {
             setError(getApiErrorMessage(error));
         }

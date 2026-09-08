@@ -4,11 +4,13 @@ import { db } from "@/server/db";
 import { posts } from "@/server/db/schema";
 
 export async function getPostBySlug(slug: string) {
-  const [post] = await db
-    .select()
-    .from(posts)
-    .where(eq(posts.slug, slug))
-    .limit(1);
+    const decodedSlug = decodeURIComponent(slug);
 
-  return post;
+    const [post] = await db
+        .select()
+        .from(posts)
+        .where(eq(posts.slug, decodedSlug))
+        .limit(1);
+
+    return post;
 }
